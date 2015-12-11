@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  	<script src="http://creativecouple.github.io/jquery-timing/jquery-timing.min.js?v=20141012-210756"></script>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/app.css' />
+  </head>
+  <body>
+    <div class="wrapper" style="width: 90%; margin: 20px auto;">
+			<div class="card">
+				<h1><%= title %></h1>
+			</div>
+		</div>
+		<div class="wrapper" style="width: 90%;margin: 20px auto;">
+			<div class="card">
+				<h1>Blink Lights</h1>
+				<button class="button danger" id="blink" style="left: 50%; margin-right: -50%; margin-top: 10px; margin-bottom: 10px; transform: translate(-50%, -50%);" onclick="blinkLights()">Blink Light</button>
+				<h1 style="text-align:center;margin-top: 0px;"><i class="fa fa-lightbulb-o" id="lb1"></i></h1>
+			</div>
+		</div>
+<!-- <form id="myform" method="post" action="/light"> <input type="submit"> </form>-->
+<!-- TODO: make hue stuff work with json to send settings. -->
+
+  </body>
+</html>
+
+<script>
+ var frm = $('#myform');
+    frm.submit(function (ev) {
+        $.ajax({
+            type: frm.attr('method'),
+            url: frm.attr('action'),
+            data: frm.serialize(),
+            success: function (data) {
+                alert('ok');
+            }
+        });
+
+        ev.preventDefault();
+    });
+
+
+function blinkIcon(icon) {
+  icon.repeat().fadeTo(500,0.5).fadeTo(500,1,$).until(15);
+}
+
+function blinkLights() {
+     $.ajax({ 
+        type: "post",
+        url: "/light",
+        data: "none.",
+        success: function (data) 
+        {
+            blinkIcon($('#lb1'));
+        }});
+   };
+
+</script>

@@ -1,0 +1,6 @@
+var hue = require("node-hue-api"), HueApi = hue.HueApi, lightState = hue.lightState;
+var hostname = "192.168.1.3", username = "TimH1993zxcv", userDescription = "The real M.V.P.";
+var api = new HueApi(hostname, username);
+var displayResult = function(result) { console.log(JSON.stringify(result, null, 2)); };
+var state = lightState.create().on().rgb([0,200,0]).alertLong();
+api.setLightState(1, state).then(displayResult).done();

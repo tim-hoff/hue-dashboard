@@ -1,0 +1,30 @@
+{
+  "name": "hue-dashboard",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build-scss": "node-sass --include-path scss src/scss/style.scss public/stylesheets/app.css",
+    "watch-css": "nodemon -e scss -x \"npm run build-scss\"",
+    "build": "browserify src/js/main.js -t babelify -o public/javascripts/main.js",
+    "watch-js": "watchify src/js/main.js -t babelify -o public/javascripts/main.js",
+    "watch": "parallelshell 'npm run watch-js' 'npm run watch-css' 'node ./bin/www'",
+    "start": "npm run watch"
+  },
+  "dependencies": {
+    "babelify": "^7.2.0",
+    "body-parser": "~1.13.2",
+    "browserify": "^12.0.1",
+    "cookie-parser": "~1.3.5",
+    "debug": "~2.2.0",
+    "ejs": "~2.3.3",
+    "express": "~4.13.1",
+    "morgan": "~1.6.1",
+    "node-hue-api": "^1.2.1",
+    "node-sass": "^3.4.2",
+    "nodemon": "^1.8.1",
+    "parallelshell": "^2.0.0",
+    "serve-favicon": "~2.3.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.6.1"
+  }
+}
