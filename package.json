@@ -1,6 +1,6 @@
 {
   "name": "hue-dashboard",
-  "version": "0.0.0",
+  "version": "0.0.3",
   "private": true,
   "scripts": {
     "build-scss": "node-sass --include-path scss src/scss/style.scss public/stylesheets/app.css",
@@ -10,6 +10,7 @@
     "watch": "parallelshell 'npm run watch-js' 'npm run watch-css' 'node ./bin/www'",
     "start": "npm run watch"
   },
+  "author": "Timothy Hoff",
   "dependencies": {
     "babelify": "^7.2.0",
     "body-parser": "~1.13.2",
