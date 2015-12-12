@@ -37,20 +37,43 @@
     </div>
 
     <div class="wrapper" >
-      <div class="card">
+      <div class="card" id="status-area">
         <h1>Status Area</h1>
-          <div class="panel">
-              <h2>Lamp</h2>
-              <p id="lamp-status" style="text-align:center;">Querying lamp status. Please wait.</p>
-              <button class="button centr" disabled="disabled" id="lamp-query"  onclick="lampQuery()">Refresh Status</button>
-          </div>
+        <div class="panel column-left">
+            <h2>Light Strip 1</h2>
+            <p id="lamp-status" style="text-align:center;">Querying Light Strip 1 status. Please wait.</p>
+            <button class="button centr" disabled="disabled" id="lamp-query"  onclick="lampQuery()">Refresh Status</button>
+        </div>
+        <div class="panel column-right">
+            <h2>Light Strip 2</h2>
+            <p id="lamp-status" style="text-align:center;">Querying Light Strip 2 status. Please wait.</p>
+            <button class="button centr" disabled="disabled" id="lamp-query"  onclick="lampQuery()">Refresh Status</button>
+        </div>
+        <div class="panel column-center">
+            <h2>Lamp</h2>
+            <p id="lamp-status" style="text-align:center;">Querying lamp status. Please wait.</p>
+            <button class="button centr" disabled="disabled" id="lamp-query"  onclick="lampQuery()">Refresh Status</button>
+        </div>
       </div>
     </div>
-
   </body>
 </html>
 
 <script>
+
+function size() { 
+  var sa = $('#status-area')
+    sa.height( 100 + Math.max (
+        $('.column-left').height(),
+        $('.column‌​-right').height(),
+        $('.column-center').height())
+    ); 
+}
+
+$( window ).resize(size());
+$( document ).ready(size());
+
+
  var frm = $('#myform');
     frm.submit(function (ev) {
         $.ajax({

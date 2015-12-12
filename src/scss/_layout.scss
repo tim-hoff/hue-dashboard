@@ -5,3 +5,24 @@
 	width: 90%;
 	margin: 20px auto;
 }
+
+.column-left{ 
+	left: 1%; 
+
+}
+
+.column-right{
+	left:67%; 
+
+}
+
+.column-center{ 
+	left:34%; 
+
+}
+.column-left, .column-right, .column-center {
+	width: 32%; 
+	position:absolute; 
+	padding: 0px 0px 0px 0px !important;
+	margin: 0px 0px 0px 0px  !important;
+}
