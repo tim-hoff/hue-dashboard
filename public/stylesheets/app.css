@@ -325,6 +325,34 @@ ul.button-group {
   .danger:hover {
     background: #b52b27; }
 
+table {
+  width: 100%;
+  max-width: 100%;
+  text-align: left; }
+  table td, table th {
+    border: 1px solid #ddd;
+    padding: 7px 20px; }
+  table th {
+    background: #ededed; }
+  table td {
+    font-size: .9em; }
+    table td:hover {
+      background: #ededed;
+      -webkit-transition: all 0.3s ease-in-out;
+      -moz-transition: all 0.3s ease-in-out;
+      -ms-transition: all 0.3s ease-in-out;
+      -o-transition: all 0.3s ease-in-out;
+      transition: all 0.3s ease-in-out; }
+
+table.table-striped tr:nth-child(even) {
+  background: whitesmoke; }
+
+.table-responsive {
+  min-height: .01%;
+  overflow-x: auto; }
+  .table-responsive td {
+    white-space: nowrap; }
+
 input,
 select,
 textarea {
@@ -403,6 +431,38 @@ input::-moz-focus-inner {
   /* Corrects inner padding and border displayed oddly in FF3/4 www.sitepen.com/blog/2008/05/14/the-devils-in-the-details-fixing-dojos-toolbar-buttons/ */
   border: 0;
   padding: 0; }
+
+code, kbd, pre, samp {
+  font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+  font-size: 90%; }
+
+code {
+  background: whitesmoke;
+  padding: 2px; }
+
+pre {
+  background: whitesmoke;
+  padding: 20px; }
+
+.panel {
+  padding: 20px 40px;
+  margin: 20px;
+  background: whitesmoke; }
+
+.panel.success, .panel.info, .panel.warning, .panel.danger {
+  color: #fff; }
+
+.panel.success {
+  background: #5cb85c; }
+
+.panel.info {
+  background: #5bc0de; }
+
+.panel.warning {
+  background: #f0ad4e; }
+
+.panel.danger {
+  background: #d9534f; }
 
 .card {
   width: 100%;

@@ -23,15 +23,29 @@
     <div class="wrapper" >
       <div class="card">
         <h1>Form Test</h1>
-        <form id="myform" method="post" action="/light"> 
-          <input type="text" name="user[name]">
+        <form enctype='application/json' id="myform" method="post" action="/light"> 
+          <div class="panel" style="width: 20%; padding-top: 10px; padding-left: 20px; padding-right: 5px;">
+          <h4> Select Lights </h4>
+          <input type="checkbox" name="light" value="1" checked="checked">LightStrip 1<br>
+          <input type="checkbox" name="light" value="2" checked="checked">LightStrip 2<br>
+          <input type="checkbox" name="light" value="4" checked="checked">Lamp<br>
+          </div>
+
           <input class="centr" type="submit">
         </form>
       </div>
     </div>
 
- <!-- <form id="myform" method="post" action="/light"> <input type="submit"> </form> -->
-<!-- TODO: make hue stuff work with json to send settings. -->
+    <div class="wrapper" >
+      <div class="card">
+        <h1>Status Area</h1>
+          <div class="panel">
+              <h2>Lamp</h2>
+              <p id="lamp-status" style="text-align:center;">Querying lamp status. Please wait.</p>
+              <button class="button centr" disabled="disabled" id="lamp-query"  onclick="lampQuery()">Refresh Status</button>
+          </div>
+      </div>
+    </div>
 
   </body>
 </html>
@@ -44,7 +58,7 @@
             url: frm.attr('action'),
             data: frm.serialize(),
             success: function (data) {
-                // alert('ok');
+                 // alert('ok');
             }
         });
 

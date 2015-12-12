@@ -11,7 +11,7 @@ var userDescription = "The real M.V.P.";
 var api = new HueApi(hostname, username);
 var light_1 = 1, light_2 = 2, light_3 = 3;
 var lamp = 4, ls1 = 1, ls2 = 2;
-
+var tech_lab = [ls1, ls2, lamp]
 var state = lightState.create().on().rgb([0,200,0]).alertLong();
 
 function blinkLights(value) {
@@ -26,17 +26,16 @@ function blinkLights(value) {
 /* GET users listing. */
 
 router.use('/', function(req, res, next) {
-	[1,2,3].forEach(blinkLights);
+  arr = req.body.light
+  // wrap the action in this. 
+  Object.prototype.toString.call(arr) == "[object Array]" ? arr.forEach(blinkLights): blinkLights(arr);
+  console.log(arr);
   next();
 });
 
-router.get('/', function(req, res, next) {
-  res.send("You shouldn't be here.");
-});
-
 router.post('/', function(req, res, next) {
-  console.log(req.body);
-  res.send(200);
+  console.log(JSON.stringify(req.body, null, 2));
+  res.sendStatus(200);
 });
 
 module.exports = router;
