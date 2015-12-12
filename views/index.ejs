@@ -7,19 +7,30 @@
     <link rel='stylesheet' href='/stylesheets/app.css' />
   </head>
   <body>
-    <div class="wrapper" style="width: 90%; margin: 20px auto;">
+    <div class="wrapper" >
 			<div class="card">
 				<h1><%= title %></h1>
+        <a class="button centr" href="/style-guide.html">Style Guide</a>
 			</div>
 		</div>
-		<div class="wrapper" style="width: 90%;margin: 20px auto;">
+		<div class="wrapper" >
 			<div class="card">
 				<h1>Blink Lights</h1>
-				<button class="button danger" id="blink" style="left: 50%; margin-right: -50%; margin-top: 10px; margin-bottom: 10px; transform: translate(-50%, -50%);" onclick="blinkLights()">Blink Light</button>
-				<h1 style="text-align:center;margin-top: 0px;"><i class="fa fa-lightbulb-o" id="lb1"></i></h1>
+				<button class="button danger centr" id="blink"  onclick="blinkLights()">Blink Light</button>
+				<h1 class="center"><i class="fa fa-lightbulb-o" id="lb1"></i></h1>
 			</div>
 		</div>
-<!-- <form id="myform" method="post" action="/light"> <input type="submit"> </form>-->
+    <div class="wrapper" >
+      <div class="card">
+        <h1>Form Test</h1>
+        <form id="myform" method="post" action="/light"> 
+          <input type="text" name="user[name]">
+          <input class="centr" type="submit">
+        </form>
+      </div>
+    </div>
+
+ <!-- <form id="myform" method="post" action="/light"> <input type="submit"> </form> -->
 <!-- TODO: make hue stuff work with json to send settings. -->
 
   </body>
@@ -33,7 +44,7 @@
             url: frm.attr('action'),
             data: frm.serialize(),
             success: function (data) {
-                alert('ok');
+                // alert('ok');
             }
         });
 
@@ -42,7 +53,7 @@
 
 
 function blinkIcon(icon) {
-  icon.repeat().fadeTo(500,0.5).fadeTo(500,1,$).until(15);
+  icon.repeat().fadeTo(500,0.5).fadeTo(500,1,$).until(2);
 }
 
 function blinkLights() {

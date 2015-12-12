@@ -30,4 +30,10 @@ hr {
     height: 0;
     margin: 40px 0;
 }
-
+.centr { 
+    left: 50%; 
+    margin-right: -50%; 
+    margin-top: 10px; 
+    margin-bottom: 10px; 
+    transform: translate(-50%, -50%);
+}
