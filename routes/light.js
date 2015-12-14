@@ -3,8 +3,8 @@ var router = express.Router();
 var hue = require("node-hue-api");
 var HueApi = hue.HueApi;
 var lightState = hue.lightState;
-var hostname = "192.168.1.3"; // lab
-// var hostname = "192.168.1.109"; // home
+// var hostname = "192.168.1.3"; // lab
+var hostname = "192.168.1.109"; // home
 var username = "TimH1993zxcv";
 var userDescription = "The real M.V.P.";
 
@@ -26,6 +26,7 @@ function blinkLights(value) {
 /* GET users listing. */
 
 router.use('/', function(req, res, next) {
+  console.log(req.body);
   arr = req.body.light
   // wrap the action in this. 
   Object.prototype.toString.call(arr) == "[object Array]" ? arr.forEach(blinkLights): blinkLights(arr);

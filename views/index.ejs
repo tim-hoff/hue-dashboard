@@ -26,9 +26,9 @@
         <form enctype='application/json' id="myform" method="post" action="/light"> 
           <div class="panel" style="width: 20%; padding-top: 10px; padding-left: 20px; padding-right: 5px;">
           <h4> Select Lights </h4>
-          <input type="checkbox" name="light" value="1" checked="checked">LightStrip 1<br>
-          <input type="checkbox" name="light" value="2" checked="checked">LightStrip 2<br>
-          <input type="checkbox" name="light" value="4" checked="checked">Lamp<br>
+          <input type="checkbox" name="light" value="1" checked="checked"><%= ls1 %><br>
+          <input type="checkbox" name="light" value="2" checked="checked"><%= ls2 %><br>
+          <input type="checkbox" name="light" value="3" checked="checked"><%= lamp %><br>
           </div>
 
           <input class="centr" type="submit">
@@ -40,19 +40,19 @@
       <div class="card" id="status-area">
         <h1>Status Area</h1>
         <div class="panel column-left">
-            <h2>Light Strip 1</h2>
-            <p id="lamp-status" style="text-align:center;">Querying Light Strip 1 status. Please wait.</p>
-            <button class="button centr" disabled="disabled" id="lamp-query"  onclick="lampQuery()">Refresh Status</button>
+            <h2><%= ls1 %></h2>
+            <p id="lamp-status" style="text-align:center;">Querying <%= ls1 %> status. Please wait.</p>
+            <button class="button centr" disabled="disabled" id="ls1-query"  onclick="statusQuery(1)">Refresh Status</button>
         </div>
         <div class="panel column-right">
-            <h2>Light Strip 2</h2>
-            <p id="lamp-status" style="text-align:center;">Querying Light Strip 2 status. Please wait.</p>
-            <button class="button centr" disabled="disabled" id="lamp-query"  onclick="lampQuery()">Refresh Status</button>
+            <h2><%= ls2 %></h2>
+            <p id="lamp-status" style="text-align:center;">Querying <%= ls2 %> status. Please wait.</p>
+            <button class="button centr" disabled="disabled" id="ls2-query"  onclick="statusQuery(2)">Refresh Status</button>
         </div>
         <div class="panel column-center">
-            <h2>Lamp</h2>
-            <p id="lamp-status" style="text-align:center;">Querying lamp status. Please wait.</p>
-            <button class="button centr" disabled="disabled" id="lamp-query"  onclick="lampQuery()">Refresh Status</button>
+            <h2><%= lamp %></h2>
+            <p id="lamp-status" style="text-align:center;">Querying <%= lamp %> status. Please wait.</p>
+            <button class="button centr" disabled="disabled" id="lamp-query"  onclick="statusQuery(4)">Refresh Status</button>
         </div>
       </div>
     </div>
@@ -60,6 +60,17 @@
 </html>
 
 <script>
+
+function statusQuery(val){
+ $.ajax({ 
+  type: "post",
+  url: "/status",
+  data: "light="+val,
+  success: function (data) 
+  {
+      
+  }});
+};
 
 function size() { 
   var sa = $('#status-area')
@@ -71,8 +82,11 @@ function size() {
 }
 
 $( window ).resize(size());
-$( document ).ready(size());
 
+$( document ).ready(function(){
+  size();
+  $("#ls1-query").prop('disabled', false);
+});
 
  var frm = $('#myform');
     frm.submit(function (ev) {
@@ -88,7 +102,6 @@ $( document ).ready(size());
         ev.preventDefault();
     });
 
-
 function blinkIcon(icon) {
   icon.repeat().fadeTo(500,0.5).fadeTo(500,1,$).until(2);
 }
@@ -97,7 +110,7 @@ function blinkLights() {
      $.ajax({ 
         type: "post",
         url: "/light",
-        data: "none.",
+        data: "light=1&light=2&light=3",
         success: function (data) 
         {
             blinkIcon($('#lb1'));
