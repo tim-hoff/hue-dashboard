@@ -38,7 +38,7 @@ input[type="submit"]{
     padding-bottom: 9px;
 }
 
-input[type=submit][disabled=disabled], button[disabled=disabled], a.disabled, .button.disabled, button.disabled {
+input[type=submit][disabled], button[disabled], a.disabled, .button.disabled, button.disabled {
     background: $button-color-disabled;
     color: $white !important;
     opacity:0.6;

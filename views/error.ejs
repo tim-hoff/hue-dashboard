@@ -1,3 +1,14 @@
-<h1><%= message %></h1>
-<h2><%= error.status %></h2>
-<pre><%= error.stack %></pre>
+<!DOCTYPE html>
+<head>
+	<link rel='stylesheet' href='/stylesheets/app.css' />
+	<title><%= message %></title>
+</head>
+<body>
+	<div class="wrapper" >
+		<div class="card">
+			<h1><%= message %></h1>
+			<h2><%= error.status %></h2>
+		<pre><%= error.stack %></pre>
+	</div>
+</div>
+</body>

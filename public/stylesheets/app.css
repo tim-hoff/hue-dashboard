@@ -289,7 +289,7 @@ input[type="submit"] {
   padding-top: 9px;
   padding-bottom: 9px; }
 
-input[type=submit][disabled=disabled], button[disabled=disabled], a.disabled, .button.disabled, button.disabled {
+input[type=submit][disabled], button[disabled], a.disabled, .button.disabled, button.disabled {
   background: #5bc0de;
   color: #fff !important;
   opacity: 0.6;

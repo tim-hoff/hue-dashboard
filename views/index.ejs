@@ -49,7 +49,7 @@
             </object>
           </h1>
           <p id="ls1-status" style="text-align:center;">Querying <%= ls1 %> status. Please wait.</p>
-          <button class="button centr" disabled="disabled" id="ls1-query"  onclick="statusQuery(1)">Refresh Status</button>
+          <button class="button centr" disabled="disabled" id="ls1-query"  onclick="statusQuery(1,'#ls1-status','#ls1-query','#svg-ls1')">Refresh Status</button>
         </div>
         <div class="panel column-right">
           <h2><%= ls2 %></h2>
@@ -61,7 +61,7 @@
             </object>
           </h1>
           <p id="ls2-status" style="text-align:center;">Querying <%= ls2 %> status. Please wait.</p>
-          <button class="button centr" disabled="disabled" id="ls2-query"  onclick="statusQuery(2)">Refresh Status</button>
+          <button class="button centr" disabled="disabled" id="ls2-query"  onclick="statusQuery(2,'#ls2-status','#ls2-query','#svg-lamp')">Refresh Status</button>
         </div>
         <div class="panel column-center">
           <h2><%= lamp %></h2>
@@ -73,7 +73,7 @@
             </object>
           </h1>
           <p id="lamp-status" style="text-align:center;">Querying <%= lamp %> status. Please wait.</p>
-          <button class="button centr" disabled="disabled" id="lamp-query"  onclick="statusQuery(4)">Refresh Status</button>
+          <button class="button centr" disabled="disabled" id="lamp-query"  onclick="statusQuery(4,'#lamp-status','#lamp-query','#svg-ls2')">Refresh Status</button>
         </div>
       </div>
     </div>
@@ -82,13 +82,18 @@
 
 <script>
 
-function statusQuery(val){
- $.ajax({ 
+function statusQuery(val, statusId, buttonId, svgId) {
+  $(buttonId).prop('disabled', true);
+
+  $.ajax({ 
   type: "post",
   url: "/status",
   data: "light="+val,
   success: function (data) {
-    alert(data);
+    $(buttonId).removeProp('disabled');
+    $(statusId).css('color', data);
+    $(statusId).text(data);
+    // alert(data);
   }});
 };
 
@@ -105,9 +110,12 @@ $( window ).resize(size());
 
 $( document ).ready(function(){
   size();
-  $("#ls1-query").prop('disabled', false);
-  $("#ls2-query").prop('disabled', false);
-  $("#lamp-query").prop('disabled', false);
+  $("#ls1-query").removeProp('disabled');
+  $("#ls2-query").removeProp('disabled');
+  $("#lamp-query").removeProp('disabled');
+  statusQuery(1,'#ls1-status','#ls1-query');
+  statusQuery(2,'#ls2-status','#ls2-query');
+  statusQuery(4,'#lamp-status','#lamp-query');
 });
 
  var frm = $('#myform');
