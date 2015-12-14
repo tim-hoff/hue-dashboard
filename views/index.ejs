@@ -21,16 +21,21 @@
 			</div>
 		</div>
     <div class="wrapper" >
-      <div class="card">
-        <h1>Form Test</h1>
+      <div class="card" id="form-area">
+        <h1>Modify Lights</h1>
         <form enctype='application/json' id="myform" method="post" action="/light"> 
-          <div class="panel" style="width: 20%; padding-top: 10px; padding-left: 20px; padding-right: 5px;">
+          <div class="panel column-pull" style="width:20%; left:1%;">
           <h4> Select Lights </h4>
           <input type="checkbox" name="light" value="1" checked="checked"><%= ls1 %><br>
           <input type="checkbox" name="light" value="2" checked="checked"><%= ls2 %><br>
           <input type="checkbox" name="light" value="4" checked="checked"><%= lamp %><br>
           </div>
-
+          <div class="panel column-pull" style="width: 25%; left:26%;">
+          <h4> Color </h4>
+          <label for="number">X</label><input type="number" name="x" min="0" max="0.675" value="0.167" step="0.001">
+          <label for="number">Y</label><input type="number" name="y" min="0" max="0.518" value="0.04" step="0.001"><br>
+          <label for="color">Color</label><input type="color" name="color" value="#336699">
+          </div>
           <input class="centr" type="submit">
         </form>
       </div>
@@ -105,11 +110,21 @@ function size() {
         $('.column-center').height())
     ); 
 }
+function size2() {
+  var fa = $('#form-area')
+  fa.height( 150 + Math.max (
+        $('.column-pull').height())
+    ); 
+}
 
-$( window ).resize(size());
+$( window ).resize(function(){
+  size();
+  size2();
+});
 
 $( document ).ready(function(){
   size();
+  size2()
   $("#ls1-query").removeProp('disabled');
   $("#ls2-query").removeProp('disabled');
   $("#lamp-query").removeProp('disabled');
