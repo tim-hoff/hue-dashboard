@@ -28,7 +28,7 @@
           <h4> Select Lights </h4>
           <input type="checkbox" name="light" value="1" checked="checked"><%= ls1 %><br>
           <input type="checkbox" name="light" value="2" checked="checked"><%= ls2 %><br>
-          <input type="checkbox" name="light" value="3" checked="checked"><%= lamp %><br>
+          <input type="checkbox" name="light" value="4" checked="checked"><%= lamp %><br>
           </div>
 
           <input class="centr" type="submit">
@@ -40,19 +40,40 @@
       <div class="card" id="status-area">
         <h1>Status Area</h1>
         <div class="panel column-left">
-            <h2><%= ls1 %></h2>
-            <p id="lamp-status" style="text-align:center;">Querying <%= ls1 %> status. Please wait.</p>
-            <button class="button centr" disabled="disabled" id="ls1-query"  onclick="statusQuery(1)">Refresh Status</button>
+          <h2 class="logo"><%= ls1 %></h2>
+          <h1 class="logo">
+            <object id="ls1" data="images/SVG/lightstrip_outline.svg" type="image/svg+xml">
+              <param name='fill' value='none' />
+              <param name='stroke' value='black' />
+              <param name='id' value='svg-ls1' />
+            </object>
+          </h1>
+          <p id="ls1-status" style="text-align:center;">Querying <%= ls1 %> status. Please wait.</p>
+          <button class="button centr" disabled="disabled" id="ls1-query"  onclick="statusQuery(1)">Refresh Status</button>
         </div>
         <div class="panel column-right">
-            <h2><%= ls2 %></h2>
-            <p id="lamp-status" style="text-align:center;">Querying <%= ls2 %> status. Please wait.</p>
-            <button class="button centr" disabled="disabled" id="ls2-query"  onclick="statusQuery(2)">Refresh Status</button>
+          <h2><%= ls2 %></h2>
+          <h1 class="logo">
+            <object  data="images/SVG/lightstrip_outline.svg" type="image/svg+xml">
+              <param name='fill' value='none' />
+              <param name='stroke' value='black' />
+              <param name='id' value='svg-ls2' />
+            </object>
+          </h1>
+          <p id="ls2-status" style="text-align:center;">Querying <%= ls2 %> status. Please wait.</p>
+          <button class="button centr" disabled="disabled" id="ls2-query"  onclick="statusQuery(2)">Refresh Status</button>
         </div>
         <div class="panel column-center">
-            <h2><%= lamp %></h2>
-            <p id="lamp-status" style="text-align:center;">Querying <%= lamp %> status. Please wait.</p>
-            <button class="button centr" disabled="disabled" id="lamp-query"  onclick="statusQuery(4)">Refresh Status</button>
+          <h2><%= lamp %></h2>
+          <h1 class="logo">
+            <object data="images/SVG/a19_outline.svg" type="image/svg+xml">
+              <param name='fill' value='none' />
+              <param name='stroke' value='black' />
+              <param name='id' value='svg-lamp' />
+            </object>
+          </h1>
+          <p id="lamp-status" style="text-align:center;">Querying <%= lamp %> status. Please wait.</p>
+          <button class="button centr" disabled="disabled" id="lamp-query"  onclick="statusQuery(4)">Refresh Status</button>
         </div>
       </div>
     </div>
@@ -66,9 +87,8 @@ function statusQuery(val){
   type: "post",
   url: "/status",
   data: "light="+val,
-  success: function (data) 
-  {
-      
+  success: function (data) {
+    alert(data);
   }});
 };
 
@@ -86,6 +106,8 @@ $( window ).resize(size());
 $( document ).ready(function(){
   size();
   $("#ls1-query").prop('disabled', false);
+  $("#ls2-query").prop('disabled', false);
+  $("#lamp-query").prop('disabled', false);
 });
 
  var frm = $('#myform');
@@ -95,7 +117,6 @@ $( document ).ready(function(){
             url: frm.attr('action'),
             data: frm.serialize(),
             success: function (data) {
-                 // alert('ok');
             }
         });
 
@@ -107,14 +128,14 @@ function blinkIcon(icon) {
 }
 
 function blinkLights() {
-     $.ajax({ 
-        type: "post",
-        url: "/light",
-        data: "light=1&light=2&light=3",
-        success: function (data) 
-        {
-            blinkIcon($('#lb1'));
-        }});
-   };
+ $.ajax({ 
+    type: "post",
+    url: "/light",
+    data: "light=1&light=2&light=4",
+    success: function (data) 
+    {
+        blinkIcon($('#lb1'));
+    }});
+ };
 
 </script>

@@ -245,6 +245,10 @@ img {
   font-size: 30px;
   padding-right: 5px; }
 
+.strip {
+  stroke: red;
+  fill: none; }
+
 ul li {
   list-style: inside; }
 
