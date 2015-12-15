@@ -20,7 +20,7 @@
 				<h1 class="center"><i class="fa fa-lightbulb-o" id="lb1"></i></h1>
 			</div>
 		</div>
-    <div class="wrapper" >
+<!--     <div class="wrapper" >
       <div class="card" id="form-card">
         <h1>Modify Lights</h1>
         <form enctype='application/json' id="form-area" method="post" action="/light"> 
@@ -38,10 +38,10 @@
           </div>
           <br>
 
-          <input class="centr" type="submit">
+          <input class="centr" style="top:50px; left:60%;" type="submit">
         </form>
       </div>
-    </div>
+    </div> -->
 
     <div class="wrapper" >
       <div class="card" id="status-area">
@@ -86,7 +86,6 @@
     </div>
   </body>
 </html>
-
 <script>
 
 function statusQuery(val, statusId, buttonId, svgId) {
@@ -112,6 +111,7 @@ function size() {
         $('.column-center').height())
     ); 
 }
+
 function size2() {
   var fa = $('#form-card')
   fa.height( 150 + Math.max (
